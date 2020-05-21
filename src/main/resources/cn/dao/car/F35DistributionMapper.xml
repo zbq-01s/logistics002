@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.dao.car.F35DistributionMapper">
+
+    <!-- 查询配送表记录 -->
+    <select id="findAll" resultType="F35Distribution">
+        SELECT f35d.id,
+        f35d.chepaihao,
+        f35d.orderweight,
+        f35d.siji,
+        f35d.sendadd,
+        f35d.getadd,
+        f35d.orderId,
+        ord.tradeNo as orderNo,
+        ord.orderState as orderstate FROM f35_distribution f35d
+        left join f35_order ord on ord.orderId = f35d.orderId
+         ORDER BY f35d.id ASC limit #{from},#{pageSize}
+    </select>
+
+    <!--查询配送表总条数-->
+    <select id="findCount" resultType="int">
+        SELECT COUNT(1) AS count FROM f35_distribution
+    </select>
+    <!--添加配送记录-->
+    <insert id="save" parameterType="int">
+        INSERT INTO f35_distribution (
+                chepaihao,
+                orderstate,
+                orderweight,
+                siji,
+                sendadd,
+                getadd,
+                orderId
+          ) VALUES (
+                #{chepaihao},
+                #{orderstate},
+                #{orderweight},
+                #{siji},
+                #{sendadd},
+                #{getadd},
+                #{orderId}
+          )
+    </insert>
+    <select id="findById" resultType="F35Distribution">
+        SELECT * FROM f35_distribution f35d WHERE f35d.id = #{distributeId}
+    </select>
+    <update id="updateStatusById" >
+        UPDATE f35_distribution SET orderstate = #{status} WHERE id = #{distributeId}
+    </update>
+</mapper>

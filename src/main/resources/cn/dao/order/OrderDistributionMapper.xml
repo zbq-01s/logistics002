@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.dao.order.OrderDistributionMapper" >
+  <resultMap id="BaseResultMap" type="cn.pojo.order.OrderDistribution" >
+    <id column="id" jdbcType="INTEGER" javaType="java.lang.Integer" property="id"/>
+    <result column="distributionId" jdbcType="INTEGER" javaType="java.lang.Integer" property="distributionId" />
+    <result column="orderNo" jdbcType="VARCHAR" javaType="java.lang.String" property="orderNo"/>
+    <result column="distributionType" jdbcType="INTEGER" javaType="java.lang.Integer" property="distributionType" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, distributionId, orderNo, distributionType
+  </sql>
+  <select id="selectByOrderNo" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from f35_order_distribution
+    where orderNo = #{orderNo,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from f35_order_distribution
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insertData" parameterType="cn.pojo.order.Order" >
+    insert into f35_order_distribution (distributionId, orderNo, distributionType  )
+    values (#{distributionId,jdbcType=INTEGER}, #{orderNo,jdbcType=INTEGER}, #{distributionType,jdbcType=INTEGER}
+      )
+  </insert>
+
+</mapper>

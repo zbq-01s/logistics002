@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+    <settings>
+        <!--懒加载为false，在初始化时全部初始化-->
+        <setting name="lazyLoadingEnabled" value="false"/>
+        <setting name="logImpl" value="STDOUT_LOGGING" />
+    </settings>
+    <!--起别名-->
+    <typeAliases>
+        <package name="cn.pojo"/>
+    </typeAliases>
+    <!--此配置也可在applicatiionContext-mybatis.xml中配置,
+        即：class="org.mybatis.spring.mapper.MapperScannerConfigurer"
+    -->
+    <mappers>
+        <package name="cn.dao"></package>
+    </mappers>
+
+</configuration>

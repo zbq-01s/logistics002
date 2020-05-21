@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="RemoteServerFileUpload:war">
+    <output-path>E:/BaiduNetdiskDownload/00 讲义+笔记+资料/4.主流框架/33.SpringMVC/springmvc/SpringMVC-02/代码/RemoteServerFileUpload/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>RemoteServerFileUpload</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="RemoteServerFileUpload.war">
+      <element id="artifact" artifact-name="RemoteServerFileUpload:war exploded" />
+    </root>
+  </artifact>
+</component>

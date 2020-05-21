@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.dao.staff.StaffMapper" >
+  <resultMap id="BaseResultMap" type="cn.pojo.staff.Staff" >
+    <constructor >
+      <idArg column="s_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="s_realName" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="s_code" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="s_age" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="salt" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="s_state" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="s_password" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="s_phone" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="s_address" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="s_email" jdbcType="VARCHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    s_id, s_realName, s_code, s_age, salt, s_state, s_password, s_phone, s_address, s_email
+  </sql>
+
+
+    <!-- 根据员工账户获取用户信息 -->
+    <select id="getStaffByCode" parameterType="java.lang.String" resultMap="BaseResultMap">
+        SELECT *
+        FROM f35_staff
+        WHERE s_code = #{staffCode}
+    </select>
+</mapper>

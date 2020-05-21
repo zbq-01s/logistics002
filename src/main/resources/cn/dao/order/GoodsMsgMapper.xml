@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.dao.order.GoodsMsgMapper" >
+  <resultMap id="BaseResultMap" type="cn.pojo.order.GoodsMsg" >
+    <constructor >
+      <idArg column="goodId" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="orderId" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="goodName" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="goodType" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="goodUnit" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="goodNumber" jdbcType="REAL" javaType="java.lang.Float" />
+      <arg column="goodWeight" jdbcType="REAL" javaType="java.lang.Float" />
+      <arg column="comment" jdbcType="VARCHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    goodId, orderId, goodName, goodType, goodUnit, goodNumber, goodWeight, comment
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from f35_goodsMsg
+    where goodId = #{goodId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from f35_goodsMsg
+    where goodId = #{goodId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.pojo.order.GoodsMsg" >
+    insert into f35_goodsMsg (goodId, orderId, goodName, 
+      goodType, goodUnit, goodNumber, 
+      goodWeight, comment)
+    values (#{goodId,jdbcType=INTEGER}, #{orderId,jdbcType=INTEGER}, #{goodName,jdbcType=VARCHAR}, 
+      #{goodType,jdbcType=VARCHAR}, #{goodUnit,jdbcType=VARCHAR}, #{goodNumber,jdbcType=REAL}, 
+      #{goodWeight,jdbcType=REAL}, #{comment,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.pojo.order.GoodsMsg" >
+    insert into f35_goodsMsg
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="goodId != null" >
+        goodId,
+      </if>
+      <if test="orderId != null" >
+        orderId,
+      </if>
+      <if test="goodName != null" >
+        goodName,
+      </if>
+      <if test="goodType != null" >
+        goodType,
+      </if>
+      <if test="goodUnit != null" >
+        goodUnit,
+      </if>
+      <if test="goodNumber != null" >
+        goodNumber,
+      </if>
+      <if test="goodWeight != null" >
+        goodWeight,
+      </if>
+      <if test="comment != null" >
+        comment,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="goodId != null" >
+        #{goodId,jdbcType=INTEGER},
+      </if>
+      <if test="orderId != null" >
+        #{orderId,jdbcType=INTEGER},
+      </if>
+      <if test="goodName != null" >
+        #{goodName,jdbcType=VARCHAR},
+      </if>
+      <if test="goodType != null" >
+        #{goodType,jdbcType=VARCHAR},
+      </if>
+      <if test="goodUnit != null" >
+        #{goodUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="goodNumber != null" >
+        #{goodNumber,jdbcType=REAL},
+      </if>
+      <if test="goodWeight != null" >
+        #{goodWeight,jdbcType=REAL},
+      </if>
+      <if test="comment != null" >
+        #{comment,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.pojo.order.GoodsMsg" >
+    update f35_goodsMsg
+    <set >
+      <if test="orderId != null" >
+        orderId = #{orderId,jdbcType=INTEGER},
+      </if>
+      <if test="goodName != null" >
+        goodName = #{goodName,jdbcType=VARCHAR},
+      </if>
+      <if test="goodType != null" >
+        goodType = #{goodType,jdbcType=VARCHAR},
+      </if>
+      <if test="goodUnit != null" >
+        goodUnit = #{goodUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="goodNumber != null" >
+        goodNumber = #{goodNumber,jdbcType=REAL},
+      </if>
+      <if test="goodWeight != null" >
+        goodWeight = #{goodWeight,jdbcType=REAL},
+      </if>
+      <if test="comment != null" >
+        comment = #{comment,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where goodId = #{goodId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.pojo.order.GoodsMsg" >
+    update f35_goodsMsg
+    set orderId = #{orderId,jdbcType=INTEGER},
+      goodName = #{goodName,jdbcType=VARCHAR},
+      goodType = #{goodType,jdbcType=VARCHAR},
+      goodUnit = #{goodUnit,jdbcType=VARCHAR},
+      goodNumber = #{goodNumber,jdbcType=REAL},
+      goodWeight = #{goodWeight,jdbcType=REAL},
+      comment = #{comment,jdbcType=VARCHAR}
+    where goodId = #{goodId,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.dao.car.F35carOperationMapper">
+
+    <!-- 查询车辆费用记录 -->
+    <select id="findAll" resultType="F35carOperation">
+        SELECT * FROM f35_car_operation f35co
+          WHERE 1=1
+            <if test="chepaihao != null and chepaihao != ''">
+                and chepaihao like CONCAT('%',#{chepaihao},'%')
+            </if>
+            <if test="jiashiyuan != null and jiashiyuan != ''">
+                and jiashiyuan like CONCAT('%',#{jiashiyuan},'%')
+            </if>
+            order by f35co.id ASC limit #{from},#{pageSize}
+    </select>
+
+    <!--查询车辆费用总条数-->
+    <select id="findCount" resultType="int">
+        SELECT COUNT(1) AS count FROM f35_car_operation f35co
+          WHERE 1=1
+            <if test="chepaihao != null and chepaihao != ''">
+                and chepaihao like CONCAT('%',#{chepaihao},'%')
+            </if>
+            <if test="jiashiyuan != null and jiashiyuan != ''">
+                and jiashiyuan like CONCAT('%',#{jiashiyuan},'%')
+            </if>
+    </select>
+
+    <!--查询车辆费用详细信息-->
+    <select id="findById" resultType="F35carOperation">
+        SELECT * FROM f35_car_operation f35co WHERE f35co.id = #{id}
+    </select>
+
+    <!--添加车辆费用记录-->
+    <insert id="save" parameterType="int">
+        INSERT INTO f35_car_operation (
+                    chepaihao,
+                    jiashiyuan,
+                    guolufei,
+                    xichefei,
+                    tingchefei,
+                    jiashuifei,
+                    jiayoufei,
+                    baoxiaoriqi
+        ) VALUES (
+                    #{chepaihao},
+                    #{jiashiyuan},
+                    #{guolufei},
+                    #{xichefei},
+                    #{tingchefei},
+                    #{jiashuifei},
+                    #{jiayoufei},
+                    NOW()
+        )
+    </insert>
+    <!--修改车辆费用-->
+    <update id="update" parameterType="int">
+        UPDATE f35_car_operation
+              <set>
+                  <if test="chepaihao != null and  chepaihao != ''">chepaihao=#{chepaihao},</if>
+                  <if test="jiashiyuan != null and  jiashiyuan != ''">jiashiyuan=#{jiashiyuan},</if>
+                  <if test="guolufei != null and  guolufei != 0">guolufei=#{guolufei},</if>
+                  <if test="xichefei != null and  xichefei != 0">xichefei=#{xichefei},</if>
+                  <if test="tingchefei != null and  tingchefei != 0">tingchefei=#{tingchefei},</if>
+                  <if test="jiashuifei != null and  jiashuifei != 0">jiashuifei=#{jiashuifei},</if>
+                  <if test="jiayoufei != null and  jiayoufei != 0">jiayoufei=#{jiayoufei},</if>
+                  <if test="baoxiaoriqi != null and  baoxiaoriqi != ''">baoxiaoriqi=#{baoxiaoriqi}</if>
+              </set>
+        WHERE id = #{id}
+
+    </update>
+
+</mapper>

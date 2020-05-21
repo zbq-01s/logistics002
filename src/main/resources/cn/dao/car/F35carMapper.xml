@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+       		<!-- 动态代理开发规则： -->
+        <!--1.namespace必须是接口的全路径名
+		2.接口的方法名必须与sql ID 一致
+		3.接口的入参与parameterType类一致
+		4.接口的返回值必须与resultType类型一致-->
+<mapper namespace="cn.dao.car.F35carMapper">
+
+    <!-- 查询车辆表记录 -->
+    <select id="findAll" resultType="F35car">
+        SELECT fc.*,f35cT.zhuangtai AS carType FROM f35_car fc,f35_carType f35cT
+        WHERE fc.zhuangtai = f35cT.id
+        <if test="chepaihao != null and chepaihao != ''">
+            and fc.chepaihao like CONCAT('%',#{chepaihao},'%')
+        </if>
+        <if test="zhuangtai != null and zhuangtai != 0">
+            and fc.zhuangtai = #{zhuangtai}
+        </if>
+        order by fc.id ASC limit #{from},#{pageSize}
+    </select>
+    <!--查询车辆表记录条数-->
+    <select id="findCount" resultType="int">
+        SELECT COUNT(1) AS COUNT FROM f35_car fc,f35_carType f35cT
+        WHERE fc.zhuangtai = f35cT.id
+        <if test="chepaihao != null and chepaihao != ''">
+            and fc.chepaihao like CONCAT('%',#{chepaihao},'%')
+        </if>
+        <if test="zhuangtai != null and zhuangtai != 0">
+            and fc.zhuangtai = #{zhuangtai}
+        </if>
+    </select>
+    <!--查询车辆详情-->
+    <select id="findById" resultType="F35car">
+        SELECT fc.*,f35cT.zhuangtai AS carType FROM f35_car fc,f35_carType f35cT
+        WHERE fc.zhuangtai = f35cT.id AND fc.id = #{id}
+    </select>
+
+    <!--添加车辆信息-->
+    <insert id="carAdd" parameterType="cn.pojo.car.F35car">
+        INSERT INTO f35_car (
+                  chepaihao,
+                  zaizhong,
+                  yanse,
+                  leixing,
+                  gourujiage,
+                  goururiqi,
+                  zhuangtai,
+                  beizhu
+              ) VALUES (
+                  #{chepaihao},
+                  #{zaizhong},
+                  #{yanse},
+                  #{leixing},
+                  #{gourujiage},
+                  #{goururiqi},
+                  #{zhuangtai},
+                  #{beizhu}
+              )
+    </insert>
+
+    <!--修改车辆信息-->
+    <update id="carUpdate" parameterType="F35car">
+        UPDATE f35_car
+          <set>
+              <if test="chepaihao != null and  chepaihao != ''">chepaihao=#{chepaihao},</if>
+              <if test="zaizhong != null and  zaizhong != 0">zaizhong=#{zaizhong},</if>
+              <if test="yanse != null and  yanse != ''">yanse=#{yanse},</if>
+              <if test="leixing != null and  leixing != ''">leixing=#{leixing},</if>
+              <if test="gourujiage != null and  gourujiage != 0">gourujiage=#{gourujiage},</if>
+              <if test="goururiqi != null and  goururiqi != ''">goururiqi=#{goururiqi},</if>
+              <if test="zhuangtai != null and  zhuangtai != 0">zhuangtai=#{zhuangtai},</if>
+              <if test="beizhu != null and  beizhu != ''">beizhu=#{beizhu}</if>
+          </set>        
+        WHERE id=#{id}
+    </update>
+
+    <!--查询空闲中的车辆-->
+    <select id="carByType" resultType="F35car">
+        SELECT fc.*,f35cT.zhuangtai AS carType FROM f35_car fc,f35_carType f35cT
+        WHERE fc.zhuangtai = f35cT.id AND fc.zhuangtai = 2
+    </select>
+
+    <!--修改车辆状态-->
+    <update id="carByzt" parameterType="int">
+        UPDATE f35_car SET zhuangtai = 1 WHERE id=#{id}
+    </update>
+    <update id="updateCarStatusByCarNo" parameterType="String">
+        UPDATE f35_car SET zhuangtai = #{status} WHERE chepaihao = #{carNo}
+    </update>
+
+</mapper>

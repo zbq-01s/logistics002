@@ -1,0 +1,373 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.dao.order.OrderMapper" >
+  <resultMap id="BaseResultMap" type="cn.pojo.order.Order" >
+    <constructor >
+      <idArg column="orderId" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="userId" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="orderState" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="orderCreateTime" jdbcType="DATE" javaType="java.util.Date" />
+      <arg column="orderMoney" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="orderWeight" jdbcType="DOUBLE" javaType="java.lang.Double" />
+      <arg column="carNumber" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="orderIsPay" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="orderPickTime" jdbcType="DATE" javaType="java.util.Date" />
+      <arg column="sender" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="sendAdd" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="sendDetailAdd" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="sendManner" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="sendPhone" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="sendTime" jdbcType="DATE" javaType="java.util.Date" />
+      <arg column="getter" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="getAdd" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="getDetailAdd" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="getPhone" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="getTime" jdbcType="DATE" javaType="java.util.Date" />
+      <arg column="sendEndTime" jdbcType="DATE" javaType="java.util.Date" />
+      <arg column="comment" jdbcType="VARCHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    orderId, userId, orderState, orderCreateTime, orderMoney, orderWeight, carNumber, 
+    orderIsPay, orderPickTime, sender, sendAdd, sendDetailAdd, sendManner, sendPhone, 
+    sendTime, getter, getAdd, getDetailAdd, getPhone, getTime, comment
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from f35_order
+    where orderId = #{orderId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from f35_order
+    where orderId = #{orderId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.pojo.order.Order" >
+    insert into f35_order (orderId, userId, orderState, 
+      orderCreateTime, orderMoney, orderWeight, 
+      carNumber, orderIsPay, orderPickTime, 
+      sender, sendAdd, sendDetailAdd, 
+      sendManner, sendPhone, sendTime, 
+      getter, getAdd, getDetailAdd, 
+      getPhone, getTime, comment
+      )
+    values (#{orderId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{orderState,jdbcType=INTEGER}, 
+      #{orderCreateTime,jdbcType=DATE}, #{orderMoney,jdbcType=INTEGER}, #{orderWeight,jdbcType=DOUBLE}, 
+      #{carNumber,jdbcType=VARCHAR}, #{orderIsPay,jdbcType=INTEGER}, #{orderPickTime,jdbcType=DATE}, 
+      #{sender,jdbcType=VARCHAR}, #{sendAdd,jdbcType=VARCHAR}, #{sendDetailAdd,jdbcType=VARCHAR}, 
+      #{sendManner,jdbcType=INTEGER}, #{sendPhone,jdbcType=VARCHAR}, #{sendTime,jdbcType=DATE}, 
+      #{getter,jdbcType=VARCHAR}, #{getAdd,jdbcType=VARCHAR}, #{getDetailAdd,jdbcType=VARCHAR}, 
+      #{getPhone,jdbcType=VARCHAR}, #{getTime,jdbcType=DATE}, #{comment,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="cn.pojo.order.Order" >
+    insert into f35_order
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="orderId != null" >
+        orderId,
+      </if>
+      <if test="userId != null" >
+        userId,
+      </if>
+      <if test="orderState != null" >
+        orderState,
+      </if>
+      <if test="orderCreateTime != null" >
+        orderCreateTime,
+      </if>
+      <if test="orderMoney != null" >
+        orderMoney,
+      </if>
+      <if test="orderWeight != null" >
+        orderWeight,
+      </if>
+      <if test="carNumber != null" >
+        carNumber,
+      </if>
+      <if test="orderIsPay != null" >
+        orderIsPay,
+      </if>
+      <if test="orderPickTime != null" >
+        orderPickTime,
+      </if>
+      <if test="sender != null" >
+        sender,
+      </if>
+      <if test="sendAdd != null" >
+        sendAdd,
+      </if>
+      <if test="sendDetailAdd != null" >
+        sendDetailAdd,
+      </if>
+      <if test="sendManner != null" >
+        sendManner,
+      </if>
+      <if test="sendPhone != null" >
+        sendPhone,
+      </if>
+      <if test="sendTime != null" >
+        sendTime,
+      </if>
+      <if test="getter != null" >
+        getter,
+      </if>
+      <if test="getAdd != null" >
+        getAdd,
+      </if>
+      <if test="getDetailAdd != null" >
+        getDetailAdd,
+      </if>
+      <if test="getPhone != null" >
+        getPhone,
+      </if>
+      <if test="getTime != null" >
+        getTime,
+      </if>
+      <if test="comment != null" >
+        comment,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="orderId != null" >
+        #{orderId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="orderState != null" >
+        #{orderState,jdbcType=INTEGER},
+      </if>
+      <if test="orderCreateTime != null" >
+        #{orderCreateTime,jdbcType=DATE},
+      </if>
+      <if test="orderMoney != null" >
+        #{orderMoney,jdbcType=INTEGER},
+      </if>
+      <if test="orderWeight != null" >
+        #{orderWeight,jdbcType=DOUBLE},
+      </if>
+      <if test="carNumber != null" >
+        #{carNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="orderIsPay != null" >
+        #{orderIsPay,jdbcType=INTEGER},
+      </if>
+      <if test="orderPickTime != null" >
+        #{orderPickTime,jdbcType=DATE},
+      </if>
+      <if test="sender != null" >
+        #{sender,jdbcType=VARCHAR},
+      </if>
+      <if test="sendAdd != null" >
+        #{sendAdd,jdbcType=VARCHAR},
+      </if>
+      <if test="sendDetailAdd != null" >
+        #{sendDetailAdd,jdbcType=VARCHAR},
+      </if>
+      <if test="sendManner != null" >
+        #{sendManner,jdbcType=INTEGER},
+      </if>
+      <if test="sendPhone != null" >
+        #{sendPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="sendTime != null" >
+        #{sendTime,jdbcType=DATE},
+      </if>
+      <if test="getter != null" >
+        #{getter,jdbcType=VARCHAR},
+      </if>
+      <if test="getAdd != null" >
+        #{getAdd,jdbcType=VARCHAR},
+      </if>
+      <if test="getDetailAdd != null" >
+        #{getDetailAdd,jdbcType=VARCHAR},
+      </if>
+      <if test="getPhone != null" >
+        #{getPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="getTime != null" >
+        #{getTime,jdbcType=DATE},
+      </if>
+      <if test="comment != null" >
+        #{comment,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.pojo.order.Order" >
+    update f35_order
+    <set >
+      <if test="userId != null" >
+        userId = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="orderState != null" >
+        orderState = #{orderState,jdbcType=INTEGER},
+      </if>
+      <if test="orderCreateTime != null" >
+        orderCreateTime = #{orderCreateTime,jdbcType=DATE},
+      </if>
+      <if test="orderMoney != null" >
+        orderMoney = #{orderMoney,jdbcType=INTEGER},
+      </if>
+      <if test="orderWeight != null" >
+        orderWeight = #{orderWeight,jdbcType=DOUBLE},
+      </if>
+      <if test="carNumber != null" >
+        carNumber = #{carNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="orderIsPay != null" >
+        orderIsPay = #{orderIsPay,jdbcType=INTEGER},
+      </if>
+      <if test="orderPickTime != null" >
+        orderPickTime = #{orderPickTime,jdbcType=DATE},
+      </if>
+      <if test="sender != null" >
+        sender = #{sender,jdbcType=VARCHAR},
+      </if>
+      <if test="sendAdd != null" >
+        sendAdd = #{sendAdd,jdbcType=VARCHAR},
+      </if>
+      <if test="sendDetailAdd != null" >
+        sendDetailAdd = #{sendDetailAdd,jdbcType=VARCHAR},
+      </if>
+      <if test="sendManner != null" >
+        sendManner = #{sendManner,jdbcType=INTEGER},
+      </if>
+      <if test="sendPhone != null" >
+        sendPhone = #{sendPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="sendTime != null" >
+        sendTime = #{sendTime,jdbcType=DATE},
+      </if>
+      <if test="getter != null" >
+        getter = #{getter,jdbcType=VARCHAR},
+      </if>
+      <if test="getAdd != null" >
+        getAdd = #{getAdd,jdbcType=VARCHAR},
+      </if>
+      <if test="getDetailAdd != null" >
+        getDetailAdd = #{getDetailAdd,jdbcType=VARCHAR},
+      </if>
+      <if test="getPhone != null" >
+        getPhone = #{getPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="getTime != null" >
+        getTime = #{getTime,jdbcType=DATE},
+      </if>
+      <if test="comment != null" >
+        comment = #{comment,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where orderId = #{orderId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.pojo.order.Order" >
+    update f35_order
+    set userId = #{userId,jdbcType=INTEGER},
+      orderState = #{orderState,jdbcType=INTEGER},
+      orderCreateTime = #{orderCreateTime,jdbcType=DATE},
+      orderMoney = #{orderMoney,jdbcType=INTEGER},
+      orderWeight = #{orderWeight,jdbcType=DOUBLE},
+      carNumber = #{carNumber,jdbcType=VARCHAR},
+      orderIsPay = #{orderIsPay,jdbcType=INTEGER},
+      orderPickTime = #{orderPickTime,jdbcType=DATE},
+      sender = #{sender,jdbcType=VARCHAR},
+      sendAdd = #{sendAdd,jdbcType=VARCHAR},
+      sendDetailAdd = #{sendDetailAdd,jdbcType=VARCHAR},
+      sendManner = #{sendManner,jdbcType=INTEGER},
+      sendPhone = #{sendPhone,jdbcType=VARCHAR},
+      sendTime = #{sendTime,jdbcType=DATE},
+      getter = #{getter,jdbcType=VARCHAR},
+      getAdd = #{getAdd,jdbcType=VARCHAR},
+      getDetailAdd = #{getDetailAdd,jdbcType=VARCHAR},
+      getPhone = #{getPhone,jdbcType=VARCHAR},
+      getTime = #{getTime,jdbcType=DATE},
+      comment = #{comment,jdbcType=VARCHAR}
+    where orderId = #{orderId,jdbcType=INTEGER}
+  </update>
+
+  <select id="findAllOrder" resultType="Order" >
+      select fo.* FROM f35_order fo
+  </select>
+  <select id="totalCount" resultType="int">
+      SELECT COUNT(*) from f35_order
+  </select>
+  <select id="getOrderList" resultType="Order">
+      SELECT * from f35_order
+      <where>
+    <if test='orderNo != null and orderNo!=""' >
+        and tradeNo = #{orderNo}
+    </if>
+    <if test="status != 0">
+      and orderState = #{status}
+    </if>
+    </where>
+      ORDER  by orderId ASC limit #{from},#{pageSize}
+  </select>
+
+  <update id="updateFromCar" parameterType="Order">
+    update f35_order
+          SET orderState = 3,sendTime = NOW()
+        WHERE orderId=#{orderId}
+  </update>
+  <!--查询待发货的订单-->
+  <select id="orderById" resultType="Order">
+    select fo.* FROM f35_order fo
+                WHERE fo.orderState = 2
+    ORDER BY fo.orderCreateTime ASC limit #{from},#{pageSize}
+  </select>
+  <!--查询待发货的订单总条数-->
+  <select id="orderCount" resultType="int">
+    SELECT COUNT(1) AS count from f35_order WHERE orderState = 0
+  </select>
+
+  <select id="findByOrderId" parameterType="int" resultType="Order">
+    SELECT * from f35_order WHERE orderId =#{orderId}
+
+  </select>
+  <!--从前台插入订单的基本信息：寄件人信息，收件人信息-->
+  <insert id="insertOrder" parameterType="Order">
+    INSERT INTO f35_order
+          (sender,sendAdd,sendDetailAdd,sendPhone,getter,getAdd,getDetailAdd,getPhone , orderState , orderCreateTime , tradeNo)
+    VALUES (#{sender},#{sendAdd},#{sendDetailAdd},#{sendPhone},#{getter},#{getAdd},#{getDetailAdd},#{getPhone} , #{orderState},#{orderCreateTime},#{tradeNo})
+
+
+  </insert>
+
+  <!--修改订单-->
+  <update id="updateOrder" parameterType="Order">
+    UPDATE f35_order
+      <set>
+
+          <if test="orderWeight!=null and orderWeight!=''">orderWeight=#{orderWeight},</if>
+          <if test="orderMoney!=null and orderMoney!=''">orderMoney=#{orderMoney},</if>
+          <if test="sender!=null and sender!=''">sender=#{sender},</if>
+          <if test="sendAdd!=null and sendAdd!=''">sendAdd=#{sendAdd},</if>
+          <if test="sendDetailAdd!=null and sendDetailAdd!=''">sendDetailAdd=#{sendDetailAdd},</if>
+          <if test="sendPhone!=null and sendPhone!=''">sendPhone=#{sendPhone},</if>
+          <if test="getter!=null and getter!=''">getter=#{getter},</if>
+          <if test="getAdd!=null and getAdd!=''">getAdd=#{getAdd},</if>
+          <if test="getDetailAdd!=null and getDetailAdd!=''">getDetailAdd=#{getDetailAdd},</if>
+          <if test="getPhone!=null and getPhone!=''">getPhone=#{getPhone},</if>
+          <if test="comment!=null and comment!=''">comment=#{comment} , </if>
+        orderPickTime = IFNULL(orderPickTime  , sysdate()) , 
+        orderState = (case when orderState = 1 then 2 else orderState end)
+
+      </set>
+      WHERE orderId=#{orderId}
+
+  </update>
+  <update id="updateOrderPay" parameterType="Order">
+    update f35_order
+    SET tradeNo=#{tradeNo},orderIsPay=1
+    where orderId=#{orderId}
+
+  </update>
+  <select id="findByOrderNo" resultType="Order" >
+    SELECT * from f35_order where tradeNo = #{tradeNo}
+  </select>
+  <update id="updateOrderSendEndTime" >
+    UPDATE f35_order set sendEndTime = sysdate() , orderState = 4 where orderId = #{orderId}
+   </update>
+  <update id="updateGetTime" >
+    UPDATE f35_order set getTime = sysdate(), orderState = 5  where orderId = #{orderId}
+  </update>
+</mapper>

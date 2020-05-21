@@ -1,0 +1,23 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="RemoteServerFileUpload:war exploded">
+    <output-path>E:/BaiduNetdiskDownload/00 讲义+笔记+资料/4.主流框架/33.SpringMVC/springmvc/SpringMVC-02/代码/RemoteServerFileUpload/target/RemoteServerFileUpload</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <exploded>true</exploded>
+        <module>RemoteServerFileUpload</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="root">
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="RemoteServerFileUpload" />
+        </element>
+      </element>
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="E:/BaiduNetdiskDownload/00 讲义+笔记+资料/4.主流框架/33.SpringMVC/springmvc/SpringMVC-02/代码/RemoteServerFileUpload/target/RemoteServerFileUpload/META-INF/MANIFEST.MF" />
+      </element>
+      <element id="javaee-facet-resources" facet="RemoteServerFileUpload/web/Web" />
+    </root>
+  </artifact>
+</component>

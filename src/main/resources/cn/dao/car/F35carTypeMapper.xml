@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.dao.car.F35carTypeMapper">
+
+    <!-- 查询车辆表记录 -->
+    <select id="find" resultType="F35carType">
+        SELECT * FROM f35_carType fc
+    </select>
+
+</mapper>

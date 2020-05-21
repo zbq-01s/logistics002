@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.dao.staffRole.StaffRoleMapper">
+    <resultMap id="BaseResultMap" type="cn.pojo.staff.StaffRole">
+        <constructor>
+            <idArg column="id" jdbcType="INTEGER" javaType="java.lang.Integer"/>
+            <arg column="role" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        </constructor>
+    </resultMap>
+    <sql id="Base_Column_List">
+    id, role
+  </sql>
+
+    <select id="loadRoleIdByStaffCode" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select sr.*
+    from f35_staffRole sr,
+    f35_staff su,
+    f35_staff_role sur
+    WHERE su.s_code=#{staffCode}
+    and su.s_id=sur.staffId
+    and sr.id=sur.staffRole
+  </select>
+
+    <!-- 查询角色列表 -->
+    <select id="getRoleList" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from f35_staffRole
+    </select>
+
+    <!-- 查询角色人数 -->
+    <select id="getRoleStaffCount" parameterType="java.lang.String" resultType="java.lang.Integer">
+   SELECT COUNT(1) as count
+FROM `f35_staffRole` r,
+`f35_staff` s,
+`f35_staff_role` sr
+WHERE r.`id` = #{staffId}
+AND s.`s_id` = sr.`staffId`
+AND r.`id` = sr.`staffRole`
+  </select>
+</mapper>

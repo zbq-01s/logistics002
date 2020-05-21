@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.dao.staffPermission.StaffPermissionMapper" >
+  <resultMap id="BaseResultMap" type="cn.pojo.staff.StaffPermission" >
+    <constructor >
+      <idArg column="id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="percode" jdbcType="VARCHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, name, percode
+  </sql>
+
+  <select id="loadPermissionByStaffCode" parameterType="java.lang.String" resultMap="BaseResultMap">
+    SELECT sp.*
+    from f35_staff su,
+    f35_staff_role sur,
+    f35_staffRole sr,
+    f35_staffRole_permission srp,
+    f35_staffPermission sp
+    WHERE su.s_code=#{staffCode}
+    and su.s_id=sur.staffId
+    and sr.id=sur.staffRole
+    AND srp.staffRoleId=sr.id
+    and srp.permissonId=sp.id
+  </select>
+
+</mapper>

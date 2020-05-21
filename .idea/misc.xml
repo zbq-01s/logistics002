@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="FrameworkDetectionExcludesConfiguration">
+    <file type="web" url="file://$PROJECT_DIR$" />
+    <file type="web" url="file://E:/BaiduNetdiskDownload/00 讲义+笔记+资料/4.主流框架/33.SpringMVC/springmvc/SpringMVC-02/代码/RemoteServerFileUpload" />
+  </component>
+  <component name="JavaScriptSettings">
+    <option name="languageLevel" value="ES6" />
+  </component>
+  <component name="MavenProjectsManager">
+    <option name="originalFiles">
+      <list>
+        <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="E:/BaiduNetdiskDownload/00 讲义+笔记+资料/4.主流框架/33.SpringMVC/springmvc/SpringMVC-02/代码/springmvc_day02_02_fileupload/pom.xml" />
+      </list>
+    </option>
+    <option name="ignoredFiles">
+      <set>
+        <option value="E:/BaiduNetdiskDownload/00 讲义+笔记+资料/4.主流框架/33.SpringMVC/springmvc/SpringMVC-02/代码/RemoteServerFileUpload/pom.xml" />
+        <option value="E:/BaiduNetdiskDownload/00 讲义+笔记+资料/4.主流框架/33.SpringMVC/springmvc/SpringMVC-02/代码/springmvc_day02_02_fileupload/pom.xml" />
+      </set>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" project-jdk-name="1.8" project-jdk-type="JavaSDK" />
+</project>
